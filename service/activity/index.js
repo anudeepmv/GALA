@@ -75,5 +75,60 @@ async update(id,data){
     });
 }
 
+
+async byId(id){
+    return new Promise(async(resolve,reject)=>{
+        activity.findById(id).populate({
+            path : 'participant',
+            populate : {
+              path : 'user_id',
+              select: '_id email phone first_name last_name role org_id'
+            }
+          }).exec((err, activities) => {
+            if (err) {
+                logger.error(err)
+                reject('Error getting activities');
+            }
+            else {
+               resolve(activities);
+            }
+        });
+      
+
+    });
+}
+
+async byUser(id){
+    return new Promise(async(resolve,reject)=>{
+        participant.find({ user_id: id}).populate('activity_id').exec((err, activities) => {
+            if (err) {
+                logger.error(err)
+                reject('Error getting activities');
+            }
+            else {
+                resolve(activities);
+            }
+        });
+      
+
+    });
+}
+async delete(id){
+    return new Promise(async(resolve,reject)=>{
+        activity.remove({_id:id}).exec((err, activities) => {
+            if (err) {
+                logger.error(err)
+                reject('Error deleting activities');
+            }
+            else {
+                participant.remove({_id:{ $in: activities.participant}})
+                resolve(activities);
+            }
+        });
+      
+
+    });
+}
+
 }
 module.exports=new Activitys();

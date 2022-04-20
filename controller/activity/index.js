@@ -22,6 +22,23 @@ const update=(req,res)=>{
     }).catch(err=>{res.status(500).send({ success:false, message:err });})
 }
 
+const byUser=(req,res)=>{
+    activity.byUser(req.params.id).then((result)=>{
+        res.status(200).send({ success:true, data:result });
+    }).catch(err=>{res.status(500).send({ success:false, message:err });})
+}
+
+const byId=(req,res)=>{
+    activity.byId(req.params.id).then((result)=>{
+        res.status(200).send({ success:true, data:result });
+    }).catch(err=>{res.status(500).send({ success:false, message:err });})
+}
+const _delete=(req,res)=>{
+    activity.delete(req.params.id).then((result)=>{
+        res.status(200).send({ success:true, data:result, message:"Activity successfully added" });
+    }).catch(err=>{res.status(500).send({ success:false, message:err });})
+}
 
 
-module.exports={get, add, update }
+
+module.exports={get, byUser, byId, add, update , _delete}
