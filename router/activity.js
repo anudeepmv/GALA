@@ -10,5 +10,4 @@ routes.route('/activity/user/:id').get(auth,activity.byUser);
 routes.route('/activity/:id').get(auth,activity.byId);
 routes.route('/activity/:id').delete(auth,activity._delete);
 
-
 module.exports=routes;

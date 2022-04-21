@@ -68,4 +68,74 @@ module.exports={
       return res.status(500).json({ success: false, error: error })
     }
   },
+  getConversationByRoomId: async (req, res) => {
+    try {
+      const { roomId } = req.params;
+      const room = await ChatRoomModel.getChatRoomByRoomId(roomId)
+      if (!room) {
+        return res.status(400).json({
+          success: false,
+          message: 'No room exists for this id',
+        })
+      }
+      const users = await UserModel.getUserByIds(room.userIds);
+      const options = {
+        page: parseInt(req.query.page) || 0,
+        limit: parseInt(req.query.limit) || 10,
+      };
+      const conversation = await ChatMessageModel.getConversationByRoomId(roomId, options);
+      return res.status(200).json({
+        success: true,
+        conversation,
+        users,
+      });
+    } catch (error) {
+      return res.status(500).json({ success: false, error });
+    }
+  },
+  markConversationReadByRoomId: async (req, res) => {
+    try {
+      const { roomId } = req.params;
+      const room = await ChatRoomModel.getChatRoomByRoomId(roomId)
+      if (!room) {
+        return res.status(400).json({
+          success: false,
+          message: 'No room exists for this id',
+        })
+      }
+
+      const currentLoggedUser = req.session.logged._id;
+      const result = await ChatMessageModel.markMessageRead(roomId, currentLoggedUser);
+      return res.status(200).json({ success: true, data: result });
+    } catch (error) {
+      return res.status(500).json({ success: false, error });
+    }
+  },
+  deleteRoomById: async (req, res) => {
+    try {
+      const { roomId } = req.params;
+      const room = await ChatRoomModel.remove({ _id: roomId });
+      const messages = await ChatMessageModel.remove({ chatRoomId: roomId })
+      return res.status(200).json({ 
+        success: true, 
+        message: "Operation performed succesfully",
+        deletedRoomsCount: room.deletedCount,
+        deletedMessagesCount: messages.deletedCount,
+      });
+    } catch (error) {
+      return res.status(500).json({ success: false, error: error })
+    }
+  },
+  deleteMessageById: async (req, res) => {
+    try {
+      const { messageId } = req.params;
+      const message = await ChatMessageModel.remove({ _id: messageId });
+      return res.status(200).json({ 
+        success: true, 
+        deletedMessagesCount: message.deletedCount,
+      });
+    } catch (error) {
+      return res.status(500).json({ success: false, error: error })
+    }
+  }
 }
