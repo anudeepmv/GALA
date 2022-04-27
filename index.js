@@ -1,3 +1,6 @@
+///https://github.com/anudeepmv/WEBSTER/issues/18
+///https://github.com/anudeepmv/WEBSTER/issues/19
+///This code is part of index subsytem and related to the Database connection.This is described at https://www.mongodb.com/blog/post/quick-start-nodejs-mongodb-how-to-get-connected-to-your-database/
 const express = require("express");
 const session = require("express-session");
 const http = require("http")
@@ -32,12 +35,12 @@ class App{
     });
        
     }
-
+/// This function is used to make connection of Javascript to mongodb connection
     connectToDB() {
       const connectionOptions = {  useNewUrlParser: true, useUnifiedTopology: true };
       return mongoose.connect(process.env.MONGOURL || '', connectionOptions);
   }
-
+/// This function is for the environment setup where we set loggers
     envSetup(){
 
         // Set Process
@@ -77,7 +80,7 @@ class App{
             res.status(404);
           });
       }
-
+///This function is used to shutdown the application
       shutdown(){
           logger.info('Application is shutsdown');
       }
