@@ -1,10 +1,13 @@
-
+/// https://github.com/anudeepmv/WEBSTER/issues/13
+/// https://github.com/anudeepmv/WEBSTER/issues/7
+/// This module is part of a Controller subsystem within a MVC design. MVC for JavaScripit is descibed at https://www.freecodecamp.org/news/the-model-view-controller-pattern-mvc-architecture-and-frameworks-explained/
 const makeValidation = require('@withvoid/make-validation');
 
 const  {ChatRoomModel, CHAT_ROOM_TYPES } = require('../../models/chatRoom');
 const ChatMessageModel = require('../../models/chatMessage');
 const UserModel = require('../../models/user');
 
+/// https://github.com/anudeepmv/WEBSTER/issues/7
 module.exports={
   initiate: async (req, res) => {
     try {
