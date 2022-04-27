@@ -16,4 +16,5 @@ const AcitivtySchema = new mongoose.Schema({
     duration: { type : Array , "default" : [] },
     participant: [{ type: mongoose.Schema.Types.ObjectId, ref:"participant" }],
 });
+
 module.exports = mongoose.model('activity', AcitivtySchema);
