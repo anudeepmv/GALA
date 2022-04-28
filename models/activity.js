@@ -1,4 +1,5 @@
-
+///making a connection with mongo data base and adding new schema
+///In the data base storing the user information
 const mongoose = require("mongoose");
 const AcitivtySchema = new mongoose.Schema({
     _id: { type: mongoose.Schema.Types.ObjectId, auto: true },
