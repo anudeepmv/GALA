@@ -1,9 +1,11 @@
+///https://github.com/anudeepmv/WEBSTER/issues/24
+//////This code is part of module subsytem and related to the Database connection for chat message schemas: https://www.mongodb.com/blog/post/quick-start-nodejs-mongodb-how-to-get-connected-to-your-database/
 const mongoose = require("mongoose");
 
 const MESSAGE_TYPES = {
   TYPE_TEXT: "text",
 };
-
+/// This function is used to read RecipientSchema by the method readyby
 const readByRecipientSchema = new mongoose.Schema(
   {
     _id: false,
@@ -29,6 +31,7 @@ const chatMessageSchema = new mongoose.Schema(
       type: String,
       default: () => MESSAGE_TYPES.TYPE_TEXT,
     },
+  /// postedbyuser is post method of program by contract
     postedByUser: { type: mongoose.Schema.Types.ObjectId, ref:"user" },
     readByRecipients: [readByRecipientSchema],
   },
@@ -45,6 +48,8 @@ const chatMessageSchema = new mongoose.Schema(
  * @param {Object} message - message you want to post in the chat room
  * @param {String} postedByUser - user who is posting the message
  */
+/// This method will create the post method in chat using program by contract
+/// https://github.com/anudeepmv/WEBSTER/issues/24
 chatMessageSchema.statics.createPostInChatRoom = async function (chatRoomId, message, postedByUser) {
   try {
     const post = await this.create({
@@ -54,10 +59,10 @@ chatMessageSchema.statics.createPostInChatRoom = async function (chatRoomId, mes
       readByRecipients: { readByUserId: postedByUser }
     });
     const aggregate = await this.aggregate([
-      // get post where _id = post._id
+      /// get post where _id = post._id (program by contract)
       { $match: { _id: post._id } },
       // do a join on another table called users, and 
-      // get me a user whose _id = postedByUser
+      // the method postedbyuser is a post method which will search by user
       {
         $lookup: {
           from: 'user',
@@ -115,6 +120,8 @@ chatMessageSchema.statics.createPostInChatRoom = async function (chatRoomId, mes
 /**
  * @param {String} chatRoomId - chat room id
  */
+/// The function getconversation is used to get the conversation by the method byroomid
+/// Post methods are used as part of program by contract
 chatMessageSchema.statics.getConversationByRoomId = async function (chatRoomId, options = {}) {
   try {
     return this.aggregate([
@@ -184,6 +191,7 @@ chatMessageSchema.statics.markMessageRead = async function (chatRoomId, currentU
  * @param {{ page, limit }} options - pagination options
  * @param {String} currentUserOnlineId - user id
  */
+/// post methods are used as part of program by contract
 chatMessageSchema.statics.getRecentConversation = async function (chatRoomIds, options, currentUserOnlineId) {
   try {
     return this.aggregate([
@@ -202,7 +210,7 @@ chatMessageSchema.statics.getRecentConversation = async function (chatRoomIds, o
       },
       { $sort: { createdAt: -1 } },
       // do a join on another table called users, and 
-      // get me a user whose _id = postedByUser
+      // get me a user whose _id = postedByUser(program by contract)
       {
         $lookup: {
           from: 'user',
