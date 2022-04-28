@@ -1,3 +1,4 @@
+///Documentation for participating,adding and deleting the activity
 const participate =require('../../service/participate');
 const { authorisedAdmin } = require('../../utils/common')
 

@@ -1,3 +1,5 @@
+///It includes external modules that exist in separate files
+///It adds and deletes the data from the base 
 const participant=require('../../models/participant')
 const activity=require('../../models/activity')
 

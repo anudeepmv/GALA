@@ -1,3 +1,5 @@
+///For securely transforming the data
+///For verifying and adding the data into the database
 const jwt = require("jsonwebtoken")
 
 const sessions={}
