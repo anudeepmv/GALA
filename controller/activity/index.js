@@ -1,7 +1,7 @@
+///Documentation for extracting the information by Id,Username
 const activity =require('../../service/activity');
 const jwt =  require('jsonwebtoken')
 
-// Get
 const get=(req,res)=>{
     activity.get(req.session.logged,req.query).then((result)=>{
         result=Object.assign(result,{success:true});
