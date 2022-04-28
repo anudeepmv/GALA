@@ -1,3 +1,4 @@
+/// https://github.com/anudeepmv/WEBSTER/issues/24
 /// https://github.com/anudeepmv/WEBSTER/issues/13
 /// https://github.com/anudeepmv/WEBSTER/issues/7
 /// This module is part of a Controller subsystem within a MVC design. MVC for JavaScripit is descibed at https://www.freecodecamp.org/news/the-model-view-controller-pattern-mvc-architecture-and-frameworks-explained/
@@ -32,6 +33,7 @@ module.exports={
       return res.status(500).json({ success: false, error: error })
     }
   },
+    /// Post message is post condition used for the program by contract
   postMessage: async (req, res) => {
     try {
       const { roomId } = req.params;
@@ -54,6 +56,7 @@ module.exports={
       return res.status(500).json({ success: false, error: error })
     }
   },
+    /// This function getRecentConversation is used to get the recent converstions of the chat
   getRecentConversation: async (req, res) => {
     try {
       const currentLoggedUser = req.session.logged._id;
@@ -71,6 +74,7 @@ module.exports={
       return res.status(500).json({ success: false, error: error })
     }
   },
+    /// This function getRecentConversationbyroomid is used to get conversations by the roomid search
   getConversationByRoomId: async (req, res) => {
     try {
       const { roomId } = req.params;
@@ -96,6 +100,7 @@ module.exports={
       return res.status(500).json({ success: false, error });
     }
   },
+    /// This function used to markconversation by the method readbyroomid
   markConversationReadByRoomId: async (req, res) => {
     try {
       const { roomId } = req.params;
@@ -114,6 +119,7 @@ module.exports={
       return res.status(500).json({ success: false, error });
     }
   },
+    /// The function delete is used to delete by the methood roombyid
   deleteRoomById: async (req, res) => {
     try {
       const { roomId } = req.params;
@@ -129,6 +135,7 @@ module.exports={
       return res.status(500).json({ success: false, error: error })
     }
   },
+/// This function is used to delete messages by the method byid
   deleteMessageById: async (req, res) => {
     try {
       const { messageId } = req.params;
