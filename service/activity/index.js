@@ -1,6 +1,9 @@
+///https://github.com/anudeepmv/WEBSTER/issues/18
+///https://github.com/anudeepmv/WEBSTER/issues/22
+///This is the service implementation of #22 https://www.webosose.org/docs/tutorials/js-services/developing-external-js-services/
 const activity=require('../../models/activity')
 const participant=require('../../models/participant')
-
+/// This class activities is to find the activity by id or user
 class Activitys{
   
     async get(data,query){
@@ -40,6 +43,7 @@ class Activitys{
     
         });
     }
+    /// The function id is to find the activity through the method findbyid
     async byId(id){
         return new Promise(async(resolve,reject)=>{
             activity.findById(id).populate({
@@ -61,7 +65,7 @@ class Activitys{
     
         });
     }
-
+///This function is to find the activity by user through the method find
     async byUser(id){
         return new Promise(async(resolve,reject)=>{
             participant.find({ user_id: id}).populate('activity_id').exec((err, activities) => {
@@ -77,6 +81,7 @@ class Activitys{
     
         });
     }
+    /// This function is to delete the activity by id
     async delete(id){
         return new Promise(async(resolve,reject)=>{
             activity.remove({_id:id}).exec((err, activities) => {
@@ -111,7 +116,7 @@ class Activitys{
     });
 }
 
-
+///This function is to update the activity by the method findbyidandupdate
 async update(id,data){
     return new Promise(async(resolve,reject)=>{
         activity.findByIdAndUpdate(id, data, function(err, u){
