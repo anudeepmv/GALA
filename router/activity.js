@@ -1,3 +1,4 @@
+///The function Route is used for the Navigation where to fetch data
 const express=require('express');
 const routes= express.Router();
 const activity=require('../controller/activity');
