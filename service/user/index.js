@@ -8,8 +8,10 @@ const md5 =require('crypto-js/md5');
 
 class User{
 
-
+    /// pre condition for the program by contract
     /// This function is used Get Specific User
+    /// The emaild and password should be some characters it cannot be empty
+    /// [issue] https://github.com/anudeepmv/WEBSTER/issues/33
     async getUser(id,by){
 
         return new Promise((resolve,reject)=>{
@@ -29,6 +31,10 @@ class User{
        
     })
   }
+    /// post condition for the program by contract
+    /// The email id and password should be unique than other users
+    /// The email id and password of 2 users cannot match it shows message it is already taken
+    ///[issue] https://github.com/anudeepmv/WEBSTER/issues/33
 
     ///this function is used for the Add User
     async addUser(data){
@@ -106,3 +112,4 @@ async delete(id){
 
 }
 module.exports=new User();
+/// end of program by contract
