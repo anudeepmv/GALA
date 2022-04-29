@@ -1,4 +1,4 @@
-
+///Code for searching more than one fields given at the same time
 const mongoose = require("mongoose");
 const AcitivtySchema = new mongoose.Schema({
     _id: { type: mongoose.Schema.Types.ObjectId, auto: true },
