@@ -1,3 +1,4 @@
+///Documentation for chat with the same activity user using mongoose
 const mongoose = require("mongoose");
 
 const CHAT_ROOM_TYPES = {
