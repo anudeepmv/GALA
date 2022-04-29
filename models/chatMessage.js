@@ -1,7 +1,9 @@
 ///https://github.com/anudeepmv/WEBSTER/issues/24
 //////This code is part of module subsytem and related to the Database connection for chat message schemas: https://www.mongodb.com/blog/post/quick-start-nodejs-mongodb-how-to-get-connected-to-your-database/
 const mongoose = require("mongoose");
-
+/// Pre-Condtion Programming by contract
+/// The Type_text should always be text that is string
+/// https://github.com/anudeepmv/WEBSTER/issues/27
 const MESSAGE_TYPES = {
   TYPE_TEXT: "text",
 };
@@ -31,7 +33,9 @@ const chatMessageSchema = new mongoose.Schema(
       type: String,
       default: () => MESSAGE_TYPES.TYPE_TEXT,
     },
+  /// post condition programming by contract
   /// postedbyuser is post method of program by contract
+  /// https://github.com/anudeepmv/WEBSTER/issues/27
     postedByUser: { type: mongoose.Schema.Types.ObjectId, ref:"user" },
     readByRecipients: [readByRecipientSchema],
   },
