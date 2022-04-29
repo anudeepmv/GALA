@@ -1,7 +1,7 @@
+///As a admin i can update,delete by user and id in the chat box
 const activity =require('../../service/activity');
 const jwt =  require('jsonwebtoken')
 
-// Get
 const get=(req,res)=>{
     activity.get(req.session.logged,req.query).then((result)=>{
         result=Object.assign(result,{success:true});
