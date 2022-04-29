@@ -1,3 +1,5 @@
+///Code for deleting the user data and adding the user data
+///As an admin I can remove the user from activity
 const participant=require('../../models/participant')
 const activity=require('../../models/activity')
 
