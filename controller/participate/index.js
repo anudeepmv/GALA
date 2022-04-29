@@ -1,3 +1,4 @@
+///As a user I can participate,add and delete the activity
 const participate =require('../../service/participate');
 const { authorisedAdmin } = require('../../utils/common')
 
