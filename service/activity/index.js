@@ -1,3 +1,4 @@
+///Code for activity and participant to delete and add by userid
 const activity=require('../../models/activity')
 const participant=require('../../models/participant')
 
