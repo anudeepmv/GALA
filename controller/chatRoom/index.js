@@ -14,7 +14,11 @@ module.exports={
     try {
       const validation = makeValidation(types => ({
         payload: req.body,
-        checks: {
+/// pre condition of the Programming by contract
+          /// for user ids the type can be array or enum
+          /// for user ids the options should be unique not empty and string only
+          /// [issue] https://github.com/anudeepmv/WEBSTER/issues/27
+      checks: {
           userIds: { 
             type: types.array, 
             options: { unique: true, empty: false, stringOnly: true } 
@@ -22,6 +26,10 @@ module.exports={
           type: { type: types.enum, options: { enum: CHAT_ROOM_TYPES } },
         }
       }));
+        /// post condition of the programming by contract
+        /// for validation the reponse status asserts to (400),(200),(500).
+        /// the return reponse asserts (400),(200),(500)
+        /// [issue] https://github.com/anudeepmv/WEBSTER/issues/27
       if (!validation.success) return res.status(400).json({ ...validation });
 
       const { userIds, type, room_id } = req.body;
@@ -146,6 +154,7 @@ module.exports={
       });
     } catch (error) {
       return res.status(500).json({ success: false, error: error })
+        /// end of program by contract 
     }
   }
 }
