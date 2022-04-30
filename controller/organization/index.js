@@ -1,3 +1,4 @@
+///formatted documentation on the creation of an entity and requesting to view the entity
 const college =require('../../service/organization');
 
 
