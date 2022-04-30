@@ -1,3 +1,5 @@
+///formatted documentation the resolving the errors and rejecting them
+///resolve command is used to correct the error
 const organization=require('../../models/organization')
 
 class Organizations{
