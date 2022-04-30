@@ -1,3 +1,5 @@
+///Documentation for Authorization of the user and login of user
+///loggers are used for errors
 const jwt = require('jsonwebtoken');
 
 const auth=async(req,res,next)=>{
