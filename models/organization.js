@@ -1,4 +1,6 @@
-
+///Documentation for organization to join schema
+///mongoose is a modelling library
+///it provides methods and statics
 const mongoose = require("mongoose");
 const CollegeSchema = new mongoose.Schema({
     _id: { type: mongoose.Schema.Types.ObjectId, auto: true },
