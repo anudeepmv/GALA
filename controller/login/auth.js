@@ -1,3 +1,5 @@
+///Formatted documentation for authorization 
+///jwt is a json used to interact between two
 const jwt = require('jsonwebtoken');
 const sessionManager = require('../../controller/login/sessionManager')
 
